@@ -4,6 +4,7 @@ import { loadState, saveState } from './game/storage.ts'
 import { Frame } from './components/Frame.tsx'
 import { VOICE_APPLE, VOICE_WEATHER } from './data/voices.ts'
 import { TitleScreen } from './screens/TitleScreen.tsx'
+import { UserVoiceIntroScreen } from './screens/UserVoiceIntroScreen.tsx'
 import { VoiceScreen } from './screens/VoiceScreen.tsx'
 import { RushScreen } from './screens/RushScreen.tsx'
 import { RushStopScreen } from './screens/RushStopScreen.tsx'
@@ -47,7 +48,7 @@ export default function App() {
   useEffect(() => { window.scrollTo({ top: 0 }) }, [state.phase])
 
   const next = () => dispatch({ type: 'NEXT' })
-  const centered = ['TITLE', 'RUSH_STOP', 'PRO_1', 'PRO_2', 'PRO_3', 'PRO_4', 'PRO_FINAL', 'DIRECT_RELEASE', 'RELEASE', 'SYSTEM_UPDATED'].includes(state.phase)
+  const centered = ['TITLE', 'USER_VOICE_INTRO', 'RUSH_STOP', 'PRO_1', 'PRO_2', 'PRO_3', 'PRO_4', 'PRO_FINAL', 'DIRECT_RELEASE', 'RELEASE', 'SYSTEM_UPDATED'].includes(state.phase)
 
   return (
     <Frame
@@ -71,6 +72,8 @@ function renderPhase(s: GameState, dispatch: React.Dispatch<Parameters<typeof se
   switch (s.phase) {
     case 'TITLE':
       return <TitleScreen onStart={next} />
+    case 'USER_VOICE_INTRO':
+      return <UserVoiceIntroScreen onNext={next} />
     case 'USER_VOICE_1':
       return <VoiceScreen key="v1" task={VOICE_APPLE} onSolved={() => dispatch({ type: 'VOICE_SOLVED' })} />
     case 'USER_VOICE_2':

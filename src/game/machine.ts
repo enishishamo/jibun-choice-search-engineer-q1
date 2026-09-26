@@ -2,6 +2,7 @@ import type { StrategyId } from './types.ts'
 
 export type Phase =
   | 'TITLE'
+  | 'USER_VOICE_INTRO'
   | 'USER_VOICE_1'
   | 'USER_VOICE_2'
   | 'SEARCH_RUSH'
@@ -34,7 +35,7 @@ export type Phase =
   | 'PRO_FINAL'
 
 export const PHASES: Phase[] = [
-  'TITLE', 'USER_VOICE_1', 'USER_VOICE_2', 'SEARCH_RUSH', 'RUSH_STOP', 'PRO_1',
+  'TITLE', 'USER_VOICE_INTRO', 'USER_VOICE_1', 'USER_VOICE_2', 'SEARCH_RUSH', 'RUSH_STOP', 'PRO_1',
   'BRIDGE_TO_SYSTEM', 'PATTERN', 'SYSTEM_MODE', 'BATCH_CHECK', 'BAD_INSPECTION', 'PRO_2',
   'DEBUG_CLASSIFY', 'SYSTEM_UPDATED', 'RECHECK', 'LEARN_TRY', 'THINK_RELEASE', 'PRO_3',
   'BRIDGE_TO_USERTEST', 'USER_TEST', 'THINK_WORLD', 'PRO_4', 'LEARN_DECIDE', 'TEAM_DECISION',
@@ -51,6 +52,7 @@ export interface ScreenRef { phase: Phase; beat: string }
 
 export const SCREENS: ScreenRef[] = [
   { phase: 'TITLE', beat: '' },
+  { phase: 'USER_VOICE_INTRO', beat: '' },
   { phase: 'USER_VOICE_1', beat: '' },
   { phase: 'USER_VOICE_2', beat: '' },
   { phase: 'SEARCH_RUSH', beat: '' },
@@ -268,7 +270,8 @@ function core(state: GameState, action: Action): GameState {
 
 function nextPhase(s: GameState): Phase {
   switch (s.phase) {
-    case 'TITLE': return 'USER_VOICE_1'
+    case 'TITLE': return 'USER_VOICE_INTRO'
+    case 'USER_VOICE_INTRO': return 'USER_VOICE_1'
     case 'RUSH_STOP': return 'PRO_1'
     case 'PRO_1': return 'BRIDGE_TO_SYSTEM'
     case 'BRIDGE_TO_SYSTEM': return 'PATTERN'

@@ -8,7 +8,9 @@ import { pickResidualCase } from '../src/data/userTest.ts'
 
 test('the game starts on the title screen', () => {
   assert.equal(initialState.phase, 'TITLE')
-  assert.equal(reducer(initialState, { type: 'NEXT' }).phase, 'USER_VOICE_1')
+  const intro = reducer(initialState, { type: 'NEXT' })
+  assert.equal(intro.phase, 'USER_VOICE_INTRO')
+  assert.equal(reducer(intro, { type: 'NEXT' }).phase, 'USER_VOICE_1')
 })
 
 test('100 searches sum to 100', () => {
@@ -70,7 +72,7 @@ function run(actions: Parameters<typeof reducer>[1][], from: GameState = initial
 
 test('macro flow: title → voices → rush → pro → learning → system mode', () => {
   const s = run([
-    { type: 'NEXT' },
+    { type: 'NEXT' }, { type: 'NEXT' },
     { type: 'VOICE_SOLVED' }, { type: 'VOICE_SOLVED' },
     { type: 'RUSH_SOLVED' }, { type: 'RUSH_SOLVED' }, { type: 'RUSH_SOLVED' },
     { type: 'NEXT' }, { type: 'NEXT' }, { type: 'NEXT' }, { type: 'NEXT' },
@@ -145,16 +147,19 @@ test('every pro moment is preceded by a screen where the children think', () => 
 
 test('undo steps back across a phase boundary and restores the state', () => {
   let s = initialSession(initialState)
-  s = sessionReducer(s, { type: 'NEXT' })            // TITLE → USER_VOICE_1
+  s = sessionReducer(s, { type: 'NEXT' })            // TITLE → USER_VOICE_INTRO
+  s = sessionReducer(s, { type: 'NEXT' })            // → USER_VOICE_1
   s = sessionReducer(s, { type: 'VOICE_SOLVED' })    // → USER_VOICE_2
   assert.equal(s.present.phase, 'USER_VOICE_2')
   s = sessionReducer(s, { type: 'UNDO' })
   assert.equal(s.present.phase, 'USER_VOICE_1')
   s = sessionReducer(s, { type: 'UNDO' })
+  assert.equal(s.present.phase, 'USER_VOICE_INTRO')
+  s = sessionReducer(s, { type: 'UNDO' })
   assert.equal(s.present.phase, 'TITLE')
   // and forward again as normal
   s = sessionReducer(s, { type: 'NEXT' })
-  assert.equal(s.present.phase, 'USER_VOICE_1')
+  assert.equal(s.present.phase, 'USER_VOICE_INTRO')
 })
 
 test('undo steps back one beat inside a phase', () => {

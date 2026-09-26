@@ -12,7 +12,7 @@ export const STAGES = ['なおす', 'まとめて試す', '世界へ届ける'] 
 
 export function stageIndex(phase: Phase): number {
   switch (phase) {
-    case 'TITLE':
+    case 'TITLE': case 'USER_VOICE_INTRO':
       return -1
     case 'USER_VOICE_1': case 'USER_VOICE_2': case 'SEARCH_RUSH': case 'RUSH_STOP':
       return 0
