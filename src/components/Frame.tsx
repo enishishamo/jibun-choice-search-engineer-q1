@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import type { Phase } from '../game/machine.ts'
-import { PHASES } from '../game/machine.ts'
+import { PHASES, SCREENS, screenIndex } from '../game/machine.ts'
 import { PRO_POINTS } from '../data/pro.ts'
 import { ClayAsset } from './ClayAsset.tsx'
 
@@ -44,10 +44,22 @@ interface Props {
 export function Frame({ phase, onJump, onReset, onUndo, canUndo, onStep, facilitator, beat, children, center }: Props) {
   const [fac, setFac] = useState(false)
   const idx = stageIndex(phase)
+  // plain arrows so the children can step back to a screen they want to look
+  // at again, or forward past one they are done with
+  const here = screenIndex(phase, beat)
+  const canBack = here > 0
+  const canForward = here >= 0 && here < SCREENS.length - 1
   const proId = phase === 'PRO_1' || phase === 'PRO_2' || phase === 'PRO_3' || phase === 'PRO_FINAL' ? phase : null
   return (
     <div className="app">
       <header className="topbar">
+        <button
+          type="button"
+          className="navarrow"
+          aria-label="前の画面"
+          disabled={!canBack}
+          onClick={() => onStep(-1)}
+        >◀</button>
         <div className="topbar__brand">JIBUN <strong>CHOICE</strong></div>
         {idx >= 0 && (
           <nav className="stages" aria-label={`いま：${STAGES[idx]}`}>
@@ -59,6 +71,13 @@ export function Frame({ phase, onJump, onReset, onUndo, canUndo, onStep, facilit
             ))}
           </nav>
         )}
+        <button
+          type="button"
+          className="navarrow"
+          aria-label="次の画面"
+          disabled={!canForward}
+          onClick={() => onStep(1)}
+        >▶</button>
         {facilitator && (
           <button type="button" className="gear-btn" aria-label="ファシリテーター用メニュー" onClick={() => setFac((v) => !v)}>
             <ClayAsset name="gear" size={20} />

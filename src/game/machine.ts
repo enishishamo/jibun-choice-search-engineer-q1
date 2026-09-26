@@ -97,6 +97,12 @@ export const SCREENS: ScreenRef[] = [
   { phase: 'PRO_FINAL', beat: '' },
 ]
 
+/** Where a phase+beat sits in the screen list, or -1 when it is not listed. */
+export function screenIndex(phase: Phase, beat: string): number {
+  const exact = SCREENS.findIndex((x) => x.phase === phase && x.beat === beat)
+  return exact >= 0 ? exact : SCREENS.findIndex((x) => x.phase === phase)
+}
+
 /**
  * Screens that cannot render without a strategy picked. When a facilitator
  * steps into one during a preview, a placeholder is filled in so the screen is

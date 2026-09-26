@@ -1164,3 +1164,18 @@ body:has(.rushdock) .stage-area { padding-bottom: 104px; }
   background: var(--c-teal); color: #fff; font-weight: 800; font-size: 14px;
   box-shadow: 0 3px 0 var(--c-teal-d);
 }
+
+/* ---------- 上の欄の 前へ／次へ ---------- */
+.navarrow {
+  flex: none;
+  width: 34px; height: 34px; border-radius: 50%; border: 0; cursor: pointer;
+  background: var(--paper); color: var(--ink-2);
+  font-size: 13px; line-height: 1;
+  box-shadow: 0 3px 0 var(--shadow-clay), inset 0 1px 0 #fff;
+  display: grid; place-items: center;
+  transition: transform .08s, box-shadow .08s, opacity .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.navarrow:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--shadow-clay); }
+.navarrow:disabled { opacity: .25; cursor: default; box-shadow: none; }
+@media (max-width: 480px) { .navarrow { width: 30px; height: 30px; font-size: 12px; } }
