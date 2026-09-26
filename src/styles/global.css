@@ -1179,3 +1179,17 @@ body:has(.rushdock) .stage-area { padding-bottom: 104px; }
 .navarrow:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--shadow-clay); }
 .navarrow:disabled { opacity: .25; cursor: default; box-shadow: none; }
 @media (max-width: 480px) { .navarrow { width: 30px; height: 30px; font-size: 12px; } }
+
+/* ---------- 大きめの画面（対面イベントのノートPCなど）向けの拡大 ----------
+   モバイル基準で組んだ寸法・文字サイズを、パソコン画面で共有して見るときに
+   小さく見えすぎないよう zoom でまとめて拡大する。個々のclamp()や
+   アイコンの実寸をすべて再調整する代わりに、画面全体を等倍で拡大表示する。 */
+@media (min-width: 900px) {
+  .app { zoom: 1.15; }
+}
+@media (min-width: 1200px) {
+  .app { zoom: 1.3; }
+}
+@media (min-width: 1600px) {
+  .app { zoom: 1.45; }
+}
