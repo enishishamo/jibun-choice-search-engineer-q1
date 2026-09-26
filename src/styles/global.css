@@ -733,26 +733,68 @@ body:has(.rushdock) .stage-area { padding-bottom: 104px; }
 .mei__dots i:nth-child(2) { animation-delay: .2s; }
 .mei__dots i:nth-child(3) { animation-delay: .4s; }
 
-/* ---------- Facilitator panel ---------- */
+/* ----------------------------------------------------------------------
+ * Facilitator panel — rendered via a portal straight to <body>, so the
+ * board's desktop zoom (see .app { zoom }) never reaches it: same clay
+ * look as the rest of the game, but always at its true, compact size.
+ * ---------------------------------------------------------------------- */
+.fac-backdrop {
+  position: fixed; inset: 0; z-index: 40;
+  background: rgba(58, 46, 42, .28);
+  display: flex; justify-content: flex-end; align-items: flex-start;
+  padding: 56px 12px 12px;
+  overflow-y: auto;
+}
 .fac {
-  position: fixed; top: 56px; right: 12px; z-index: 40;
-  width: min(360px, calc(100vw - 24px)); max-height: calc(100vh - 80px); overflow: auto;
-  background: #fff; border-radius: 16px; padding: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  font-size: 13px; font-weight: 500;
+  width: min(380px, 100%);
+  max-height: calc(100vh - 68px);
+  overflow-y: auto;
+  background: var(--paper);
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: var(--shadow-card), var(--shadow-inset);
+  font-family: var(--font-jp);
+  font-size: 13px; font-weight: 600; color: var(--ink);
+  display: flex; flex-direction: column; gap: 4px;
 }
-.fac h4 { margin: 8px 0 6px; font-size: 13px; }
-.fac__undo {
-  width: 100%; padding: 10px; border-radius: 10px; border: 0; cursor: pointer;
-  background: var(--c-coral); color: #fff; font-weight: 800; font-size: 14px;
-  box-shadow: 0 3px 0 var(--c-coral-d);
+.fac__top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 10px; margin-bottom: 6px;
+  border-bottom: 2px solid var(--line);
 }
-.fac__undo:disabled { background: #e6e0d8; color: #a99a90; box-shadow: none; cursor: not-allowed; }
-.fac__hint { margin: 6px 0 0; font-size: 11px; color: #8a7c72; line-height: 1.5; }
-.fac__phases { display: flex; flex-wrap: wrap; gap: 4px; }
-.fac__phases button { font-size: 11px; padding: 4px 8px; border-radius: 8px; border: 1px solid #ddd; background: #fafafa; cursor: pointer; }
-.fac__phases button.is-now { background: var(--c-coral); color: #fff; border-color: var(--c-coral); }
-.fac__note { background: #fff8e8; border-radius: 10px; padding: 10px; line-height: 1.5; white-space: pre-line; }
+.fac__top strong {
+  font-family: var(--font-label); font-weight: 900; letter-spacing: .04em; font-size: 14px;
+}
+.fac__close {
+  border: 0; cursor: pointer; background: var(--paper-2); color: var(--ink-2);
+  border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 800;
+  box-shadow: 0 2px 0 var(--shadow-clay);
+}
+.fac__section { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.fac__section:last-child { border-bottom: 0; padding-bottom: 2px; }
+.fac h4 {
+  margin: 0 0 8px; font-family: var(--font-label); font-weight: 900;
+  letter-spacing: .06em; font-size: 11px; color: var(--ink-2); text-transform: uppercase;
+}
+.fac__wide { width: 100%; }
+.fac__hint { margin: 8px 0 0; font-size: 11.5px; color: var(--ink-2); line-height: 1.55; }
+.fac__now {
+  display: inline-block; font-family: var(--font-label); font-weight: 800; font-size: 12px;
+  background: var(--paper-2); color: var(--ink); border-radius: 999px; padding: 4px 12px;
+}
+.fac__note {
+  background: #fff8e8; border: 1.5px solid #ffe9b8; border-radius: 14px;
+  padding: 12px; line-height: 1.6; white-space: pre-line; font-size: 12.5px;
+}
+.fac__phases { display: flex; flex-wrap: wrap; gap: 5px; }
+.fac__chip {
+  font-family: var(--font-label); font-size: 10.5px; font-weight: 800;
+  padding: 5px 10px; border-radius: 999px; border: 0; cursor: pointer;
+  background: var(--paper-2); color: var(--ink-2);
+  box-shadow: 0 2px 0 var(--shadow-clay);
+}
+.fac__chip:hover { filter: brightness(.97); }
+.fac__chip.is-now { background: var(--c-coral); color: #fff; box-shadow: 0 2px 0 var(--c-coral-d); }
 
 /* ---------- Utilities ---------- */
 .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
@@ -1157,13 +1199,8 @@ body:has(.rushdock) .stage-area { padding-bottom: 104px; }
   background: var(--paper-2); border-radius: 999px; padding: 6px 16px;
 }
 
-/* ---------- ファシリテーター用の画面送り ---------- */
+/* ---------- ファシリテーター用の画面送り（.fac 内） ---------- */
 .fac__steps { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.fac__steps button {
-  padding: 10px; border-radius: 10px; border: 0; cursor: pointer;
-  background: var(--c-teal); color: #fff; font-weight: 800; font-size: 14px;
-  box-shadow: 0 3px 0 var(--c-teal-d);
-}
 
 /* ---------- 上の欄の 前へ／次へ ---------- */
 .navarrow {
