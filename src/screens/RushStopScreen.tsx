@@ -68,7 +68,7 @@ export function RushStopScreen({ beat: rawBeat, onBeat, onNext }: Props) {
           {openShown && (
             <div className="col pop-in" style={{ gap: 10 }}>
               <h1 className="h1">……どうする？</h1>
-              <p className="sub">3人で 考えてみよう。</p>
+              <p className="sub">4人で 考えてみよう。</p>
             </div>
           )}
           {hintShown && <p className="sub fade-in">今までみたいに、1個ずつ やっていく？</p>}
@@ -79,7 +79,7 @@ export function RushStopScreen({ beat: rawBeat, onBeat, onNext }: Props) {
       {beat === 'think' && (
         <div className="col pop-in" style={{ gap: 16 }}>
           <h1 className="h1 pre">{'どうしたら、たくさんの検索を\nいっぺんに よくできると思う？'}</h1>
-          <p className="sub">3人で 考えてみよう。どんな答えでも いいよ</p>
+          <p className="sub">4人で 考えてみよう。どんな答えでも いいよ</p>
           {askShown && <Button size="lg" className="pop-in" onClick={() => onBeat('ask')}>考えてみた！</Button>}
         </div>
       )}

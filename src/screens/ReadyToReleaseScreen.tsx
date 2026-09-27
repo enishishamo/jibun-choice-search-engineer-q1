@@ -44,7 +44,7 @@ export function ReadyToReleaseScreen({ beat: rawBeat, onBeat, oks, onOk, onRelea
 
   return (
     <div className="col w-full fade-in" style={{ gap: 20, textAlign: 'center' }}>
-      <h1 className="h1">3人で 最後のOKを 出そう</h1>
+      <h1 className="h1">4人で 最後のOKを 出そう</h1>
       <p className="sub">ひとり 1つずつ 押してね</p>
       <div className="oks">
         {oks.map((on, i) => (

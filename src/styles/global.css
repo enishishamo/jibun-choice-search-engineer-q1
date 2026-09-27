@@ -976,8 +976,9 @@ body:has(.rushdock) .stage-area { padding-bottom: 104px; }
 .recap__body b { font-size: clamp(15px, 1.9vw, 18px); }
 .recap__body em { font-style: normal; font-size: 13px; color: var(--ink-2); }
 
-.oks { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; width: 100%; max-width: 620px; }
-@media (max-width: 560px) { .oks { grid-template-columns: 1fr; } }
+.oks { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; width: 100%; max-width: 680px; }
+@media (max-width: 680px) { .oks { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 360px) { .oks { grid-template-columns: 1fr; } }
 .okbtn {
   border: 0; cursor: pointer; border-radius: 24px; padding: 22px 14px;
   background: var(--paper); box-shadow: var(--shadow-card), var(--shadow-inset);

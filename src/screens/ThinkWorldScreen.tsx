@@ -31,7 +31,7 @@ export function ThinkWorldScreen({ tuned, onNext }: Props) {
         <div className="tally__row tally__row--still"><b>1人</b> まだ 少し 見つけにくそう<span className="chip">🔎 {residualQuery}</span></div>
       </div>
       <h1 className="h1">この結果、みんなは どう思う？</h1>
-      <p className="sub">3人で 話してみよう。どんな答えでも いいよ</p>
+      <p className="sub">4人で 話してみよう。どんな答えでも いいよ</p>
       {askShown && <Button size="lg" className="pop-in" color="teal" onClick={onNext}>エンジニアプロに 聞いてみる</Button>}
     </div>
   )

@@ -12,7 +12,7 @@ export function UserVoiceIntroScreen({ onNext }: { onNext: () => void }) {
       <Notice color="coral"><ClayAsset name="mail" size={24} /> USER VOICE</Notice>
       <h1 className="h1 pre">{'検索チームに\n最初の依頼が届きました！'}</h1>
       <div className="learncard">
-        <p className="pre">{'3人の ミッション\n\n検索で 困っている人を、\n「見つからない」\n↓\n「見つかった！」\nに 変えよう。'}</p>
+        <p className="pre">{'4人の ミッション\n\n検索で 困っている人を、\n「見つからない」\n↓\n「見つかった！」\nに 変えよう。'}</p>
       </div>
       <Button size="lg" onClick={onNext}>USER VOICEを 見てみる</Button>
     </div>

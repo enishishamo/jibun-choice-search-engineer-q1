@@ -156,7 +156,7 @@ export const initialState: GameState = {
   lastDebugPick: null,
   lastDebugFixed: false,
   beat: '',
-  oks: [false, false, false],
+  oks: [false, false, false, false],
 }
 
 export type Action =

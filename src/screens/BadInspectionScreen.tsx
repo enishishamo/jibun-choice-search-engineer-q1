@@ -107,7 +107,7 @@ export function BadInspectionScreen({ strategy, beat: rawBeat, onBeat, onNext }:
         <div className="col pop-in" style={{ gap: 14 }}>
           <h2 className="h2 pre">{'同じ作戦を 使ったのに、\nどうして 結果が ちがったんだろう？'}</h2>
           <p className="h2">何が ちがう？</p>
-          <p className="sub">3人で 考えてみよう。どんな答えでも いいよ</p>
+          <p className="sub">4人で 考えてみよう。どんな答えでも いいよ</p>
           <Button size="lg" color="teal" onClick={onNext}>エンジニアプロに 聞いてみる</Button>
         </div>
       )}

@@ -41,7 +41,7 @@ export function ThinkReleaseScreen({ beat: rawBeat, onBeat, onNext }: Props) {
       <ScaleBar at={1} stopBefore />
       <h2 className="h2 pre">{'100件では、\nかなり よさそうだった。'}</h2>
       <h1 className="h1 pre">{'でも、\nまだ 分からないことって\nあるかな？'}</h1>
-      <p className="sub">3人で 考えてみよう。</p>
+      <p className="sub">4人で 考えてみよう。</p>
       {askShown && <Button size="lg" className="pop-in" onClick={() => onBeat('ask')}>考えてみた！</Button>}
     </div>
   )

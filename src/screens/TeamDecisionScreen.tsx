@@ -26,7 +26,7 @@ export function TeamDecisionScreen({ tuned, onDecide }: Props) {
     <div className="col w-full fade-in" style={{ gap: 20 }}>
       <div className="center">
         <h1 className="h1">じゃあ、みんなは 次に どうする？</h1>
-        <p className="sub">3人で 決めよう。どれを えらんでも いいよ</p>
+        <p className="sub">4人で 決めよう。どれを えらんでも いいよ</p>
       </div>
       <div className="evidence">
         <span className="evidence__chip">10人に 試した</span>

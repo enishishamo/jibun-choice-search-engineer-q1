@@ -196,9 +196,9 @@ test('undo restores state changed by an action: classification, decision, OKs', 
   let o = initialSession({ ...initialState, phase: 'READY_TO_RELEASE', beat: 'ok' })
   o = sessionReducer(o, { type: 'SET_OK', index: 0 })
   o = sessionReducer(o, { type: 'SET_OK', index: 1 })
-  assert.deepEqual(o.present.oks, [true, true, false])
+  assert.deepEqual(o.present.oks, [true, true, false, false])
   o = sessionReducer(o, { type: 'UNDO' })
-  assert.deepEqual(o.present.oks, [true, false, false])
+  assert.deepEqual(o.present.oks, [true, false, false, false])
 })
 
 test('undo is a no-op with nothing to undo, and reset clears the history', () => {

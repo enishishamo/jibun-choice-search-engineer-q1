@@ -130,7 +130,7 @@ export function UserTestScreen({ tuned, onNext }: Props) {
             <div className="tally__row tally__row--ok"><b>{found}人</b> ほしい情報を 見つけられた</div>
             <div className="tally__row tally__row--still"><b>1人</b> まだ 見つけにくそう<span className="chip">🔎 {residualQuery}</span></div>
           </div>
-          <Button size="lg" color="teal" onClick={onNext}>3人で 話してみる</Button>
+          <Button size="lg" color="teal" onClick={onNext}>4人で 話してみる</Button>
         </div>
       )}
     </div>
